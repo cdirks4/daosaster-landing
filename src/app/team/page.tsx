@@ -241,21 +241,21 @@ const TeamPage = () => {
         </motion.div>
 
         {/* Team Members Grid */}
-        <div ref={membersRef} className="grid grid-cols-1 gap-12">
+        <div ref={membersRef} className="grid grid-cols-1 gap-8 mt-8">
           {teamMembers.map((member, index) => (
             <motion.div
               key={member.name}
               initial={{ opacity: 0, y: 20 }}
               animate={
-                isMembersInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
+                isTitleInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
               }
               transition={{
                 duration: 0.8,
-                delay: isMembersInView ? index * 0.2 : 0,
+                delay: isTitleInView ? index * 0.2 : 0,
               }}
-              className="bg-surface-light/50 dark:bg-surface-dark/50 rounded-2xl p-6 md:p-8 backdrop-blur-sm shadow-lg border border-primary-light/10 dark:border-primary-dark/10"
+              className="bg-surface-light/50 dark:bg-surface-dark/50 rounded-2xl p-4 md:p-8 backdrop-blur-sm shadow-lg border border-primary-light/10 dark:border-primary-dark/10"
             >
-              <div className="grid md:grid-cols-3 gap-6 md:gap-8">
+              <div className="flex flex-col md:grid md:grid-cols-3 gap-6 md:gap-8">
                 {/* Profile Image with Enhanced Frame */}
                 <div className="md:col-span-1">
                   <div className="max-w-[200px] md:max-w-none mx-auto p-2 bg-gradient-to-r from-primary-light/5 to-accent-light/5 dark:from-primary-dark/5 dark:to-accent-dark/5 rounded-2xl shadow-lg">
@@ -286,7 +286,7 @@ const TeamPage = () => {
                 </div>
 
                 {/* Bio and Details */}
-                <div className="md:col-span-2 space-y-6">
+                <div className="md:col-span-2 space-y-4 md:space-y-6 mt-6 md:mt-0">
                   <div>
                     <h2 className="text-lg md:text-xl font-bold text-secondary-light dark:text-secondary-dark mb-2">
                       {member.name}
