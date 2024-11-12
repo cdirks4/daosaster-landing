@@ -19,44 +19,10 @@ In disasters where traditional communication and coordination fail, our project 
 - TypeScript
 - Tailwind CSS
 - Framer Motion
-- Prisma
-- PostgreSQL
-- Google Cloud Storage
-- Clerk Authentication
 
 ## Getting Started
 
-### 1. Start the Database
-
-```bash
-# Start the database
-docker-compose up -d
-
-# To stop the database
-docker-compose down
-
-# To view database logs
-docker-compose logs -f postgres
-```
-
-### 2. Environment Setup
-
-Create a `.env` file with the following variables:
-
-```env
-# Database
-DATABASE_URL="postgresql://postgres:postgres@localhost:5432/disaster_response_db?schema=public"
-
-# Authentication
-NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_key
-CLERK_SECRET_KEY=your_clerk_secret
-
-# Google Cloud Storage
-GOOGLE_PRIVATE_KEY=your_base64_encoded_credentials
-GOOGLE_CLOUD_BUCKET=your_bucket_name
-```
-
-### 3. Run the Development Server
+### 1. Run the Development Server
 
 ```bash
 # Install dependencies
@@ -88,7 +54,6 @@ We're actively seeking insights from disaster response professionals. If you hav
 ## Awards
 
 - ETHGlobal SF Top 10 Finalist
-- EasyA x Polkadot Harvard Hackathon Winner
 
 ## License
 
