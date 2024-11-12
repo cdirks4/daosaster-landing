@@ -2,8 +2,6 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { UserButton, SignInButton, useUser } from "@clerk/nextjs";
-import { usePathname } from "next/navigation";
 import ThemeToggle from "./ThemeToggle";
 import { useTheme } from "../contexts/ThemeContext";
 
@@ -29,19 +27,19 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 w-full z-50 border-b transition-[background-color,border-color,shadow] duration-300 font-space-mono ${
+      className={`fixed top-0 left-0 w-full z-50 transition-[background-color,border-color,shadow] duration-300 font-space-mono ${
         isDarkMode
           ? isScrolled
-            ? "bg-background-dark/90 border-primary-dark/10 shadow-md backdrop-blur-sm"
-            : "bg-background-dark border-transparent"
+            ? "bg-background-dark/90 shadow-lg backdrop-blur-sm"
+            : "bg-background-dark"
           : isScrolled
-          ? "bg-background-light/90 border-primary-light/10 shadow-md backdrop-blur-sm"
-          : "bg-background-light border-transparent"
+          ? "bg-background-light/90 shadow-lg backdrop-blur-sm"
+          : "bg-background-light"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center py-4">
-          <div className="text-lg font-space-mono font-semibold tracking-wider">
+        <div className="flex justify-between items-center h-16 md:h-20">
+          <div className="flex-shrink-0">
             <Link
               href="/"
               className={`text-center group flex items-center ${
@@ -49,7 +47,7 @@ const Navbar = () => {
               }`}
             >
               <span
-                className={`text-xl ${
+                className={`text-sm md:text-lg ${
                   isDarkMode ? "text-secondary-dark" : "text-secondary-light"
                 } hover:text-primary-light dark:hover:text-primary-dark transition-colors`}
               >
@@ -58,10 +56,10 @@ const Navbar = () => {
             </Link>
           </div>
 
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center gap-3 md:gap-4">
             <Link href="/team">
               <span
-                className={`text-sm font-fira-code px-4 py-2 rounded-full bg-primary-light/10 dark:bg-primary-dark/10 ${
+                className={`text-xs md:text-sm whitespace-nowrap px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-primary-light/10 dark:bg-primary-dark/10 ${
                   isDarkMode ? "text-secondary-dark" : "text-secondary-light"
                 } hover:bg-primary-light/20 dark:hover:bg-primary-dark/20 transition-colors`}
               >

@@ -115,19 +115,19 @@ export default function Home() {
               }
               transition={{ duration: 0.8 }}
             >
-              <h1 className="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary-light to-accent-light dark:from-primary-dark dark:to-accent-dark mb-6">
+              <h1 className="text-2xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary-light to-accent-light dark:from-primary-dark dark:to-accent-dark mb-4">
                 Share Your Disaster Response Experience
               </h1>
-              <p className="text-xl text-secondary-light dark:text-secondary-dark mb-4">
+              <p className="text-base md:text-lg text-secondary-light dark:text-secondary-dark mb-3">
                 Help us understand real-world disaster response challenges. Your
                 field experience and insights will shape the future of
                 autonomous response systems.
               </p>
-              <p className="text-lg text-secondary-light dark:text-secondary-dark mb-8">
+              <p className="text-sm md:text-base text-secondary-light dark:text-secondary-dark mb-6">
                 Schedule a 30-minute call with our research team to share your
                 experiences.
               </p>
-              <div className="flex justify-center space-x-4">
+              <div className="flex justify-center space-x-3 md:space-x-4">
                 <a
                   href="https://calendly.com/cdirks4/new-meeting"
                   target="_blank"
@@ -136,11 +136,11 @@ export default function Home() {
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="bg-gradient-to-r from-primary-light to-accent-light dark:from-primary-dark dark:to-accent-dark text-white px-8 py-3 rounded-full text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center space-x-2"
+                    className="bg-gradient-to-r from-primary-light to-accent-light dark:from-primary-dark dark:to-accent-dark text-white px-4 md:px-8 py-2 md:py-3 rounded-full text-xs md:text-base font-semibold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center space-x-2"
                   >
                     <span>Schedule a Call</span>
                     <svg
-                      className="w-5 h-5"
+                      className="w-4 h-4 md:w-5 md:h-5"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -159,11 +159,11 @@ export default function Home() {
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="bg-surface-light dark:bg-surface-dark text-secondary-light dark:text-secondary-dark px-8 py-3 rounded-full text-lg font-semibold shadow-lg hover:shadow-xl border border-primary-light/10 dark:border-primary-dark/10 hover:border-primary-light/30 dark:hover:border-primary-dark/30 transition-all duration-300 flex items-center justify-center space-x-2"
+                    className="bg-surface-light dark:bg-surface-dark text-secondary-light dark:text-secondary-dark px-4 md:px-8 py-2 md:py-3 rounded-full text-xs md:text-base font-semibold shadow-lg hover:shadow-xl border border-primary-light/10 dark:border-primary-dark/10 hover:border-primary-light/30 dark:hover:border-primary-dark/30 transition-all duration-300 flex items-center justify-center space-x-2"
                   >
                     <span>Email Us</span>
                     <svg
-                      className="w-5 h-5"
+                      className="w-4 h-4 md:w-5 md:h-5"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -212,10 +212,10 @@ export default function Home() {
             transition={{ duration: 0.8 }}
             className="max-w-4xl mx-auto mb-24 text-center"
           >
-            <h2 className="text-2xl md:text-3xl font-bold text-secondary-light dark:text-secondary-dark mb-6">
+            <h2 className="text-lg md:text-xl font-bold text-secondary-light dark:text-secondary-dark mb-4">
               About Our Research
             </h2>
-            <div className="space-y-4 text-lg text-secondary-light dark:text-secondary-dark">
+            <div className="space-y-3 text-sm md:text-base text-secondary-light dark:text-secondary-dark">
               <p>
                 In disasters where traditional communication and coordination
                 fail, our project introduces a decentralized, autonomous
@@ -259,10 +259,10 @@ export default function Home() {
                 <div className="text-primary-light dark:text-primary-dark mb-4">
                   {feature.icon}
                 </div>
-                <h3 className="text-xl font-semibold mb-2 text-secondary-light dark:text-secondary-dark">
+                <h3 className="text-base md:text-lg font-semibold mb-2 text-secondary-light dark:text-secondary-dark">
                   {feature.title}
                 </h3>
-                <p className="text-secondary-light dark:text-secondary-dark">
+                <p className="text-xs md:text-sm text-secondary-light dark:text-secondary-dark">
                   {feature.description}
                 </p>
               </motion.div>
@@ -279,7 +279,7 @@ export default function Home() {
                   : { opacity: 0, y: 20 }
               }
               transition={{ duration: 0.8 }}
-              className="text-3xl font-bold text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-primary-light to-accent-light dark:from-primary-dark dark:to-accent-dark"
+              className="text-xl md:text-2xl font-bold text-center mb-8 bg-clip-text text-transparent bg-gradient-to-r from-primary-light to-accent-light dark:from-primary-dark dark:to-accent-dark"
             >
               System Capabilities
             </motion.h2>
@@ -297,7 +297,7 @@ export default function Home() {
                     duration: 0.8,
                     delay: isCapabilitiesInView ? index * 0.1 : 0,
                   }}
-                  className="px-6 py-3 rounded-full bg-surface-light/50 dark:bg-surface-dark/50 backdrop-blur-sm text-secondary-light dark:text-secondary-dark border border-primary-light/10 dark:border-primary-dark/10 hover:border-primary-light/30 dark:hover:border-primary-dark/30 transition-all duration-300"
+                  className="px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-surface-light/50 dark:bg-surface-dark/50 backdrop-blur-sm text-xs md:text-sm text-secondary-light dark:text-secondary-dark border border-primary-light/10 dark:border-primary-dark/10 hover:border-primary-light/30 dark:hover:border-primary-dark/30 transition-all duration-300"
                 >
                   {capability}
                 </motion.div>

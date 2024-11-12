@@ -1,7 +1,7 @@
 "use client";
 import { motion, useInView } from "framer-motion";
 import Image from "next/image";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 const TeamPage = () => {
   const teamMembers = [
@@ -135,6 +135,9 @@ const TeamPage = () => {
   const isTitleInView = useInView(titleRef, { once: true, amount: 0.3 });
   const isMembersInView = useInView(membersRef, { once: true, amount: 0.3 });
 
+  // Add state for expanded text
+  const [isExpanded, setIsExpanded] = useState(false);
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-background-light to-surface-light dark:from-background-dark dark:to-surface-dark">
       <div className="max-w-7xl mx-auto px-4 py-24">
@@ -146,12 +149,12 @@ const TeamPage = () => {
           transition={{ duration: 1 }}
           className="mb-16"
         >
-          {/* Outer Frame */}
           <div className="p-4 bg-gradient-to-r from-primary-light/5 to-accent-light/5 dark:from-primary-dark/5 dark:to-accent-dark/5 rounded-3xl shadow-2xl">
-            {/* Inner Frame */}
             <div className="rounded-2xl overflow-hidden border-2 border-primary-light/10 dark:border-primary-dark/10 hover:border-primary-light/20 dark:hover:border-primary-dark/20 transition-all duration-300 bg-surface-light dark:bg-surface-dark shadow-lg">
-              {/* Photo Container */}
-              <div className="relative aspect-[21/9] w-full group">
+              <div
+                className="relative aspect-[21/9] w-full group cursor-pointer md:cursor-default"
+                onClick={() => setIsExpanded(!isExpanded)}
+              >
                 <Image
                   src="/images/team-daosaster.jpg"
                   alt="DisasterResponse.AI Team"
@@ -159,28 +162,62 @@ const TeamPage = () => {
                   className="object-cover transform hover:scale-[1.02] transition-transform duration-700"
                   priority
                 />
-                {/* Enhanced Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-background-dark/90 via-background-dark/50 to-transparent opacity-80 group-hover:opacity-70 transition-opacity duration-300" />
+                {/* Gradient Overlay */}
+                <div
+                  className={`absolute inset-0 bg-gradient-to-t transition-opacity duration-300 ${
+                    isExpanded
+                      ? "from-background-dark/90 via-background-dark/50 to-transparent"
+                      : "from-background-dark/90 to-transparent md:from-background-dark/90 md:via-background-dark/50 md:to-transparent"
+                  }`}
+                />
 
-                {/* Text Overlay with Enhanced Styling */}
-                <div className="absolute bottom-0 left-0 right-0 p-8 backdrop-blur-sm bg-gradient-to-t from-background-dark/80 to-transparent">
+                {/* Text Overlay */}
+                <div className="absolute bottom-0 left-0 right-0 p-3 md:p-8">
                   <div className="max-w-4xl mx-auto">
-                    <h2 className="text-2xl md:text-3xl font-bold text-white mb-2 drop-shadow-lg">
+                    <h2 className="text-base md:text-2xl font-bold text-white mb-1 md:mb-2 drop-shadow-lg">
                       ETHGlobal SF Finalists
                     </h2>
-                    <p className="text-gray-200 max-w-2xl text-shadow leading-relaxed">
+                    <p
+                      className={`text-xs md:text-sm text-gray-200 max-w-2xl text-shadow leading-relaxed ${
+                        isExpanded ? "" : "hidden md:block"
+                      }`}
+                    >
                       Our team at ETHGlobal San Francisco, where we developed a
                       decentralized, autonomous disaster response system
                       combining AI agents, drones, and blockchain technology.
                     </p>
+                    <button
+                      className="mt-2 text-xs text-gray-300 hover:text-white transition-colors md:hidden flex items-center space-x-1"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setIsExpanded(!isExpanded);
+                      }}
+                    >
+                      <span>{isExpanded ? "Show Less" : "Read More"}</span>
+                      <svg
+                        className={`w-4 h-4 transform transition-transform duration-300 ${
+                          isExpanded ? "rotate-180" : ""
+                        }`}
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </button>
                   </div>
                 </div>
 
-                {/* Corner Accents */}
-                <div className="absolute top-4 left-4 w-8 h-8 border-t-2 border-l-2 border-white/20 rounded-tl-lg" />
-                <div className="absolute top-4 right-4 w-8 h-8 border-t-2 border-r-2 border-white/20 rounded-tr-lg" />
-                <div className="absolute bottom-4 left-4 w-8 h-8 border-b-2 border-l-2 border-white/20 rounded-bl-lg" />
-                <div className="absolute bottom-4 right-4 w-8 h-8 border-b-2 border-r-2 border-white/20 rounded-br-lg" />
+                {/* Corner Accents - Hide on mobile */}
+                <div className="hidden md:block absolute top-4 left-4 w-8 h-8 border-t-2 border-l-2 border-white/20 rounded-tl-lg" />
+                <div className="hidden md:block absolute top-4 right-4 w-8 h-8 border-t-2 border-r-2 border-white/20 rounded-tr-lg" />
+                <div className="hidden md:block absolute bottom-4 left-4 w-8 h-8 border-b-2 border-l-2 border-white/20 rounded-bl-lg" />
+                <div className="hidden md:block absolute bottom-4 right-4 w-8 h-8 border-b-2 border-r-2 border-white/20 rounded-br-lg" />
               </div>
             </div>
           </div>
@@ -194,10 +231,10 @@ const TeamPage = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h1 className="text-4xl md:text-5xl font-bold text-secondary-light dark:text-secondary-dark mb-6">
+          <h1 className="text-2xl md:text-4xl font-bold text-secondary-light dark:text-secondary-dark mb-4">
             Our Research Team
           </h1>
-          <p className="text-xl text-secondary-light dark:text-secondary-dark max-w-3xl mx-auto">
+          <p className="text-sm md:text-base text-secondary-light dark:text-secondary-dark max-w-3xl mx-auto">
             Meet the researchers working to understand and improve disaster
             response through AI and human-centered design.
           </p>
@@ -210,18 +247,18 @@ const TeamPage = () => {
               key={member.name}
               initial={{ opacity: 0, y: 20 }}
               animate={
-                isTitleInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
+                isMembersInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
               }
               transition={{
                 duration: 0.8,
-                delay: isTitleInView ? index * 0.5 : 0,
+                delay: isMembersInView ? index * 0.2 : 0,
               }}
-              className="bg-surface-light/50 dark:bg-surface-dark/50 rounded-2xl p-8 backdrop-blur-sm shadow-lg border border-primary-light/10 dark:border-primary-dark/10"
+              className="bg-surface-light/50 dark:bg-surface-dark/50 rounded-2xl p-6 md:p-8 backdrop-blur-sm shadow-lg border border-primary-light/10 dark:border-primary-dark/10"
             >
-              <div className="grid md:grid-cols-3 gap-8">
+              <div className="grid md:grid-cols-3 gap-6 md:gap-8">
                 {/* Profile Image with Enhanced Frame */}
                 <div className="md:col-span-1">
-                  <div className="p-2 bg-gradient-to-r from-primary-light/5 to-accent-light/5 dark:from-primary-dark/5 dark:to-accent-dark/5 rounded-2xl shadow-lg">
+                  <div className="max-w-[200px] md:max-w-none mx-auto p-2 bg-gradient-to-r from-primary-light/5 to-accent-light/5 dark:from-primary-dark/5 dark:to-accent-dark/5 rounded-2xl shadow-lg">
                     <div className="relative aspect-square rounded-xl overflow-hidden border border-primary-light/10 dark:border-primary-dark/10 hover:border-primary-light/20 dark:hover:border-primary-dark/20 transition-all duration-300 group">
                       <Image
                         src={member.image}
@@ -236,11 +273,11 @@ const TeamPage = () => {
                       <div className="absolute bottom-2 right-2 w-4 h-4 border-b border-r border-white/20 rounded-br-lg" />
                     </div>
                   </div>
-                  <div className="mt-6 space-y-2">
+                  <div className="mt-4 space-y-2">
                     {member.achievements.map((achievement) => (
                       <div
                         key={achievement}
-                        className="text-sm text-secondary-light dark:text-secondary-dark bg-surface-light dark:bg-surface-dark rounded-full px-4 py-1 border border-primary-light/10 dark:border-primary-dark/10"
+                        className="text-xs md:text-sm text-secondary-light dark:text-secondary-dark bg-surface-light dark:bg-surface-dark rounded-full px-3 py-1 border border-primary-light/10 dark:border-primary-dark/10"
                       >
                         {achievement}
                       </div>
@@ -251,24 +288,24 @@ const TeamPage = () => {
                 {/* Bio and Details */}
                 <div className="md:col-span-2 space-y-6">
                   <div>
-                    <h2 className="text-2xl font-bold text-secondary-light dark:text-secondary-dark mb-2">
+                    <h2 className="text-lg md:text-xl font-bold text-secondary-light dark:text-secondary-dark mb-2">
                       {member.name}
                     </h2>
-                    <h3 className="text-lg text-primary-light dark:text-primary-dark mb-4">
+                    <h3 className="text-base md:text-lg text-primary-light dark:text-primary-dark mb-3">
                       {member.role}
                     </h3>
-                    <p className="text-secondary-light dark:text-secondary-dark">
+                    <p className="text-xs md:text-sm text-secondary-light dark:text-secondary-dark">
                       {member.bio}
                     </p>
                   </div>
 
                   <div>
-                    <h4 className="text-lg font-semibold text-secondary-light dark:text-secondary-dark mb-2">
+                    <h4 className="text-sm md:text-base font-semibold text-secondary-light dark:text-secondary-dark mb-2">
                       Education
                     </h4>
                     {member.education.map((edu) => (
                       <div key={edu.degree} className="mb-4">
-                        <p className="font-medium text-secondary-light dark:text-secondary-dark">
+                        <p className="text-xs md:text-sm font-medium text-secondary-light dark:text-secondary-dark">
                           {edu.school}
                         </p>
                         <p className="text-primary-light dark:text-primary-dark">
