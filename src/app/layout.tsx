@@ -3,9 +3,6 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import "./fonts.css";
 import Navbar from "./components/navbar";
-import { ClerkProvider } from "@clerk/nextjs";
-import { UserProvider } from "./contexts/UserContext";
-import { ThemeProvider } from "./contexts/ThemeContext";
 import { Providers } from "./components/Providers";
 import { Space_Mono, Fira_Code } from "next/font/google";
 
@@ -24,7 +21,7 @@ const firaCode = Fira_Code({
 
 export const metadata: Metadata = {
   title: "DisasterResponse.AI",
-  description: "Building & Launching AI Prototypes Every Sunday",
+  description: "Changing the world, one signal at a time",
 };
 
 export const viewport: Viewport = {
