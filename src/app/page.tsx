@@ -195,6 +195,8 @@ export default function Home() {
               <video
                 className="w-full rounded-xl object-cover shadow-lg hover:shadow-2xl transition-shadow duration-300"
                 controls
+                autoPlay
+                poster="/images/video-thumbnail.jpg"
               >
                 <source src="/videos/high.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
